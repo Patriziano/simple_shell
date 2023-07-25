@@ -9,22 +9,22 @@
 char *_strtok(char *str, char *delim)
 {
 	char *token = NULL, *delimpos = NULL;
-	static char *next_token;
+	static char *nxt_token;
 
 	if (str != NULL)
-		next_token = str;
-	if (!next_token || *next_token == '\0')
+		nxt_token = str;
+	if (!nxt_token || *nxt_token == '\0')
 		return (NULL);
-	token = next_token;
-	delimpos = _strstr(next_token, delim);
+	token = nxt_token;
+	delimpos = _strstr(nxt_token, delim);
 	if (delimpos != NULL)
 	{
 		*delimpos = '\0';
-		next_token = delimpos + my_strlen(delim);
+		nxt_token = delimpos + my_strlen(delim);
 	}
 	else
 	{
-		next_token += my_strlen(next_token);
+		nxt_token += my_strlen(nxt_token);
 	}
 	return (token);
 }
