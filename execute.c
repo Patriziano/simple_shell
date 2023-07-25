@@ -9,7 +9,7 @@
 int execute(int ac, char **args)
 {
 	int status = 0, i = 0;
-	char *command = NULL;
+	char *cmd = NULL;
 	pid_t child_pid;
 	char *message;
 
@@ -22,8 +22,8 @@ int execute(int ac, char **args)
 		i++;
 	}
 
-	command = path_handler(args);
-	if (command == NULL)
+	cmd = path_handler(args);
+	if (cmd == NULL)
 	{
 		write(STDERR_FILENO, "./hsh: 1: ", 10);
 		write(STDERR_FILENO, args[0], my_strlen(args[0]));
@@ -40,7 +40,7 @@ int execute(int ac, char **args)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(command, args, environ) < 0)
+		if (execve(cmd, args, environ) < 0)
 			perror("./hsh");
 		exit(EXIT_SUCCESS);
 	}
