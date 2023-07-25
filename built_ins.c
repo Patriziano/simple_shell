@@ -7,7 +7,7 @@
 
 int ch_dir(char **args)
 {
-	char *old_dir = _getenv("OLDPWD");
+	char *old_directory = _getenv("OLDPWD");
 	char *pwd = _getenv("PWD");
 
 	if (args[1] == NULL)
@@ -17,7 +17,7 @@ int ch_dir(char **args)
 	}
 	if (my_strcmp(args[1], "-") == 0)
 	{
-		if (chdir(old_dir) < 0)
+		if (chdir(old_directory) < 0)
 			perror("chdir");
 		update_dir(pwd);
 		return (1);
