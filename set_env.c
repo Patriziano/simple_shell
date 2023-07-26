@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * _setenv- updates or create an environment variable.
+ * _setenv - updates or create an environment variable.
  * @args: arguments
  * Return: 1 for loop to continue.
  */
