@@ -9,20 +9,20 @@ void rm_spaces(char *p);
 char **tokenize(char *buffer, char *delim)
 {
 	int num_toks = 0, i = 0;
-	char *token = NULL, *buf_cpy = NULL, **args = NULL;
+	char *token = NULL, *buf_cp = NULL, **args = NULL;
 
 	while (*buffer == ' ')	/* remove preceding spaces */
 		buffer++;
 
-	buf_cpy = my_strdup(buffer);
-	if (!buf_cpy)
+	buf_cp = my_strdup(buffer);
+	if (!buf_cp)
 	{
 		perror("strdup");
 		free(buffer);
 		return (NULL);
 	}
-	rm_spaces(buf_cpy);
-	token = _strtok(buf_cpy, delim);
+	rm_spaces(buf_cp);
+	token = _strtok(buf_cp, delim);
 	while (token != NULL)	/* get number of tokens*/
 	{
 		num_toks++;
@@ -32,7 +32,7 @@ char **tokenize(char *buffer, char *delim)
 	if (!args)
 	{
 		perror("Error: malloc");
-		free(buf_cpy);
+		free(buf_cp);
 		free(buffer);
 		return (NULL);
 	}
@@ -43,7 +43,7 @@ char **tokenize(char *buffer, char *delim)
 		token = _strtok(NULL, delim);
 	}
 	args[i] = NULL;
-	free(buf_cpy);
+	free(buf_cp);
 	return (args);
 }
 

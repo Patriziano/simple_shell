@@ -8,42 +8,42 @@
  */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	static char *buf;
+	static char *buffer;
 	size_t index = 0, bytes_read = 0, buf_size = BUFSIZ;
 	char *new_buf = NULL, ch;
 
 	if (!lineptr || !n || !stream)
 		return (-1);
-	buf = malloc(buf_size);
+	buffer = malloc(buf_size);
 	while (1)
 	{
 		if (bytes_read >= (buf_size - 1))
 		{
 			buf_size += BUFSIZ;
-			new_buf = _realloc(buf, buf_size);
+			new_buf = _realloc(buffer, buf_size);
 			if (!new_buf)
 			{
-				free(buf);
-				buf = NULL;
+				free(buffer);
+				buffer = NULL;
 				return (-1);
 			}
-			free(buf);
-			buf = new_buf;
+			free(buffer);
+			buffer = new_buf;
 		}
 		if ((read(fileno(stream), &ch, 1)) <= 0)
 		{
-			free(buf);
-			buf = NULL;
+			free(buffer);
+			buffer = NULL;
 			if (bytes_read > 0)
 				return (bytes_read);
 			return (-1);
 		}
-		buf[index] = ch;
+		buffer[index] = ch;
 		index++, bytes_read++;
-		if (buf[index - 1] == '\n')
+		if (buffer[index - 1] == '\n')
 			break;
 	}
-	buf[index] = '\0';
-	*lineptr = buf;
+	buffer[index] = '\0';
+	*lineptr = buffer;
 	return (bytes_read);
 }

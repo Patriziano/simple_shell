@@ -8,7 +8,7 @@ int _unsetenv(char **args)
 {
 	int i = 0, flag = 0;
 	char *name = args[1];
-	size_t len_name = my_strlen(name);
+	size_t name_len = my_strlen(name);
 
 	if (!name) /* invalid name */
 	{
@@ -18,8 +18,8 @@ int _unsetenv(char **args)
 
 	while (environ[i] != NULL)
 	{
-		if (my_strncmp(environ[i], name, len_name) == 0 &&
-environ[i][len_name] == '=')
+		if (my_strncmp(environ[i], name, name_len) == 0 &&
+environ[i][name_len] == '=')
 		{
 			free(environ[i]);
 			flag = 1;
