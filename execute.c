@@ -29,6 +29,7 @@ int execute(int ac, char **args)
 		write(STDERR_FILENO, args[0], my_strlen(args[0]));
 		message = " : not found\n";
 		write(STDERR_FILENO, message, my_strlen(message));
+		free(command);
 		return (1);
 	}
 	(void)ac;
@@ -45,6 +46,6 @@ int execute(int ac, char **args)
 		exit(EXIT_SUCCESS);
 	}
 	wait(&status);
-
+	free(command);
 	return (1);
 }
