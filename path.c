@@ -7,19 +7,21 @@
 char *path_handler(char **argv)
 {
 	char *path = NULL, *path_cp = NULL;
-	char *token = NULL, *command = NULL;
+	char *token = NULL, *command = NULL, *result = NULL;
 	int arg_len = my_strlen(argv[0]);
 	struct stat st;
 
 	path = _getenv("PATH");
 	path_cp = my_strdup(path);
 	token = _strtok(path_cp, ":");
+	result = my_strdup(argv[0]);
 	while (token)
 	{
 		command = malloc(sizeof(char) * (my_strlen(token) + arg_len + 2));
 		if (!command)
 		{
 			free(path_cp);
+			free(result);
 			return (NULL);
 		}
 		my_strcpy(command, token);
@@ -30,6 +32,9 @@ char *path_handler(char **argv)
 		if (stat(command, &st) == 0)
 		{
 			free(path_cp);
+			path_cp = NULL;
+			free(result);
+			printf("%s\n", command);
 			return (command);
 		}
 		free(command);
@@ -38,8 +43,11 @@ char *path_handler(char **argv)
 	if (stat(argv[0], &st) == 0)
 	{
 		free(path_cp);
-		return (argv[0]);
+		path_cp = NULL;
+		printf("%s\n", argv[0]);
+		return (result);
 	}
 	free(path_cp);
+	path_cp = NULL;
 	return (NULL);
 }
