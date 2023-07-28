@@ -48,11 +48,11 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *path_handler(char **argv);
 int my_strcmp(const char *s1, const char *s2);
 size_t my_strlen(const char *s);
-char* my_strdup(const char *s);
-void* _realloc(void* ptr, size_t size);
-void* _memcpy(void* dest, const void* src, size_t num);
-char* my_strcpy(char* dest, const char* src);
-char* my_strcat(char* dest, const char* src);
-int my_strncmp(const char* s1, const char* s2, size_t num);
+char *my_strdup(const char *s);
+void *_realloc(void *ptr, size_t size);
+void *_memcpy(void *dest, const void *src, size_t num);
+char *my_strcpy(char *dest, const char *src);
+char *my_strcat(char *dest, const char *src);
+int my_strncmp(const char *s1, const char *s2, size_t num);
 
 #endif
