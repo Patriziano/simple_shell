@@ -34,7 +34,6 @@ char *path_handler(char **argv)
 			free(path_cp);
 			path_cp = NULL;
 			free(result);
-			printf("%s\n", command);
 			return (command);
 		}
 		free(command);
@@ -44,10 +43,10 @@ char *path_handler(char **argv)
 	{
 		free(path_cp);
 		path_cp = NULL;
-		printf("%s\n", argv[0]);
 		return (result);
 	}
 	free(path_cp);
 	path_cp = NULL;
+	free(result);
 	return (NULL);
 }
