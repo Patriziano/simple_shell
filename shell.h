@@ -54,5 +54,6 @@ void *_memcpy(void *dest, const void *src, size_t num);
 char *my_strcpy(char *dest, const char *src);
 char *my_strcat(char *dest, const char *src);
 int my_strncmp(const char *s1, const char *s2, size_t num);
-
+char *construct_command_path(const char *token, const char *command_name);
+char *search_command_in_path(const char *path, const char *command_name);
 #endif
